@@ -1,0 +1,177 @@
+body
+{
+	margin: 0;
+}
+
+#baner
+{
+	height: 20%;
+	width: 100%;
+	background-color: #ffa530;
+}
+
+#panel
+{
+	height: 70%;
+	width: 100%;
+	background-color: yellow;
+	float: left;
+}
+
+#stopka
+{
+	height: 10%;
+	width: 100%;
+	background-color: red;
+	float: left;
+}
+
+#zaloguj
+{
+	position: fixed;
+	top: 30%;
+	left: 38%;
+}
+
+#calosc
+{
+	position: fixed;
+	background-color: black;
+	height: 100%;
+	width: 100%;
+	color: white;
+	
+}
+
+#logo
+{
+	height: 90%;
+	width: 100%:
+}
+
+#tlo
+{
+	position: absolute;
+	height: 80%;
+	width: 100%;
+	background-color: #ffd59b;
+	overflow-y: scroll;
+}
+
+
+#grupa
+{
+	position: relative;
+	left: 5%;
+}
+
+#nauczyciel
+{
+	border: 1px solid black;
+	border-collapse: collapse;
+	margin: 0 auto;
+	font-size: 25px;
+}
+
+#td
+{
+	border: 1px solid black;
+}
+
+#witaj
+{
+	position: fixed;
+	top: 2%;
+	right: 3%;
+	
+}
+
+#buttondodaj
+{
+	
+	position: fixed;
+	right: 5%;
+	top: 20%;
+	height: 100px;
+	width: 200px;
+	font-size: 35px;
+}
+
+#dodajukryj2
+{
+	display: none;
+}
+
+#buttonhaslo
+{
+	position: fixed;
+	right: 20%;
+	top: 20%;
+	height: 100px;
+	width: 200px;
+	font-size: 35px;
+}
+
+#witajfont
+{
+	font-size: 30px;
+	font-style: italic;
+}
+
+#nauczycielobraz
+{
+	position: relative;
+	height: 85px;
+	width: 85px;
+	right: 3%;
+}
+#wylogujsie
+{
+	float: right;
+	font-style: italic;
+	text-align: center;
+}
+#dodaj
+{
+	border-style: hidden;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 25px;
+}
+
+#dodajukryj
+{
+	display: none;
+}
+
+#dodajplusa
+{
+	display: none;
+}
+
+#klasapol
+{
+	text-align: center;
+	font-style: italic;
+}
+
+a.dymek span 
+{
+
+	display: none;
+	padding: 2px 3px;
+	margin-left: 8px;
+	width: 130px;
+
+}
+
+a.dymek:hover span 
+{
+	border: 1px solid #ccc;
+	display: inline;
+	position: absolute;
+	margin: 15px 0 0 5px;
+	background: black;
+	color: white;
+	text-align: center;
+}
