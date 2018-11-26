@@ -1,7 +1,7 @@
 <?php
 @include_once "./users/teacher.php";
 @include_once  "./users/student.php";
-//@include_once  "./errors.php";
+@include_once  "./errors.php";
 ?>
 
 <!DOCTYPE html>
