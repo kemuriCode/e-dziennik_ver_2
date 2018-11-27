@@ -136,7 +136,7 @@ if (isset($_POST['submit'])) {
 
             $_SESSION['success'] = "You are now logged in";
 
-            header('location: ./teacher.php');
+            header('location: teacher.php');
 
             } else {
 

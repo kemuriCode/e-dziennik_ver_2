@@ -12,4 +12,4 @@ $errors = array();
 
 // connect to the database
 
-$db = mysqli_connect('localhost', 'root', 'Amsterdam.1', 'szkola');
+$db = mysqli_connect('localhost', 'root', '', 'szkola');
