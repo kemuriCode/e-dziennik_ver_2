@@ -1,7 +1,5 @@
 <?php
-@include_once "./users/teacher.php";
-@include_once  "./users/student.php";
-@include_once  "./errors.php";
+include "server.php";
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +36,6 @@
     </head>
 
     <body>
-
         <!-- Top content -->
         <div class="top-content">
             <div class="inner-bg">
@@ -61,11 +58,12 @@
                             </div>
                             <div class="form-bottom">
 			                    <form role="form" action="index.php" method="post" class="login-form">
+                                    <?php include('errors.php'); ?>
                                     <div class="form-group">
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect01">Rodzaj użytkownika</label>
                                         </div>
-                                        <select class="custom-select" id="inputGroupSelect01" name="type">
+                                        <select class="custom-select" id="inputGroupSelect01" name="form-type">
                                             <option selected>Wybierz...</option>
                                             <option value="1">Nauczyciel</option>
                                             <option value="2">Uczeń</option>
@@ -79,7 +77,7 @@
 			                        	<label class="sr-only" for="form-password">Password</label>
 			                        	<input type="password" name="form-password" placeholder="Hasło..." class="form-password form-control" id="form-password">
 			                        </div>
-			                        <button type="submit" class="btn">Zaloguj się!</button>
+			                        <button type="submit" class="btn" name="submit">Zaloguj się!</button>
 			                    </form>
 		                    </div>
                         </div>
@@ -102,40 +100,47 @@
 </html>
 
 <?php
+// LOGIN USER
 
-$connect=new PDO('mysql:host=localhost;dbname:szkola; port=3306','root','');
-$connect->query('SET NAMES UTF8');
-$connect->query('SET CHATACTER_SET utf_polish_ci');
+if (isset($_POST['submit'])) {
 
-if(isset($_POST['form-username']) && isset($_POST['form-password']) && isset($_POST['type']))
-{
-    $show=$connect->prepare('select * from uzytkownik where login="'.$_POST['form-username'].'" && haslo="'.sha1($_POST['form-password']).'" && rodzaj="'.$_POST['type'].'"');
-    $show->execute();
+    $username = mysqli_real_escape_string($db, $_POST['form-username']);
 
-    $login=$_POST['form-username'];
-    $password=$_POST['frm-password'];
+    $password = mysqli_real_escape_string($db, $_POST['form-password']);
 
-    $inquiry_results=$show->rowCount();
+    $type = mysqli_real_escape_string($db, $_POST['form-type']);
 
-    if($inquiry_results==1 && $_POST['type']=="1")
-    {
-        SESSION_START();
-        $result=$show->fetch(PDO::FETCH_ASSOC);
-        $_SESSION['login_session']=$result;
-        header('Location:./users/teacher.php');
+    if (empty($username)) {
+
+        array_push($errors, "Username is required");
+
     }
-    else
-        if($inquiry_results==1 && $_POST['type']=="2")
-        {
-            SESSION_START();
-            $result=$show->fetch(PDO::FETCH_ASSOC);
-            $_SESSION['login_session']=$result;
-            header('Location:./users/students');
+
+    if (empty($password)) {
+
+        array_push($errors, "Password is required");
+
+    }
+
+    if (count($errors) == 0) {
+
+        $password = md5($password);
+
+        $query = "SELECT * FROM uzytkownik WHERE login='$username' AND haslo='$password' AND rodzaj= '$type'";
+
+        $results = mysqli_query($db, $query);
+
+        if (mysqli_num_rows($results) == 1 && $_POST['form-type'] == 1) {
+
+            $_SESSION['form-username'] = $username;
+
+            $_SESSION['success'] = "You are now logged in";
+
+            header('location: ./teacher.php');
+
+            } else {
+
+                header('location: student.php');
+            }
         }
-        else
-        {
-            echo '<script type="text/javascript">
-					alert("Wprowadzono niepoprawny login lub/i hasło lub/i typ konta...");
-					</script>';
-        }
-}
+    }
