@@ -189,7 +189,7 @@ if (isset($_POST['reg_user'])) {
 
 // receive all input values from the form
 
-    $username = mysqli_real_escape_string($db, $_POST['username']);
+    $username = mysqli_real_escape_string($db, $_POST['login']);
 
     $first_name = mysqli_real_escape_string($db, $_POST['first_name']);
 
@@ -203,7 +203,7 @@ if (isset($_POST['reg_user'])) {
 // by adding (array_push()) corresponding error unto $errors array
 
     if (empty($username)) {
-        array_push($errors, "Username is required");
+        array_push($errors, "Login is required");
     }
 
     if (empty($password_1)) {
@@ -222,9 +222,9 @@ if (isset($_POST['reg_user'])) {
 
     if ($user) { // if user exists
 
-        if ($user['username'] === $username) {
+        if ($user['login'] === $username) {
 
-            array_push($errors, "Username already exists");
+            array_push($errors, "Login already exists");
 
         }
     }
@@ -241,7 +241,7 @@ if (isset($_POST['reg_user'])) {
 
         mysqli_query($db, $query);
 
-        $_SESSION['username'] = $username;
+        $_SESSION['login'] = $username;
 
         $_SESSION['success'] = "You are now logged in";
 
